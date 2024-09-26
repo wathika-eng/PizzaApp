@@ -2,19 +2,22 @@ import { StyleSheet } from 'react-native';
 import products from '@/assets/data/products';
 import { Text, View, Image, SafeAreaView } from 'react-native';
 import { Product } from '../constants/Products';
-
+import { Link } from 'expo-router';
 type ProductListItemProps = {
     product: Product;
 };
 const image = "https://m.media-amazon.com/images/I/51CDwZuW8rL._SX425_.jpg"
 const ProductListItem = ({ product }: ProductListItemProps) => {
     return (
-        <View style={styles.container}>
-            <Image source={{ uri: product.image || image }} style={styles.image}
-            />
-            <Text style={styles.title}>{product.name}</Text>
-            <Text style={styles.price}>Ksh {product.price}</Text>
-        </View>
+        <Link href={`/product/${product.id}`} asChild>
+            <View style={styles.container}>
+                <Image source={{ uri: product.image || image }} style={styles.image}
+                />
+                <Text style={styles.title}>{product.name}</Text>
+                <Text style={styles.price}>Ksh {product.price}</Text>
+
+            </View>
+        </Link>
     );
 }
 
